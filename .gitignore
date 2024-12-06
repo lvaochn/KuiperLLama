@@ -1,0 +1,5 @@
+.vscode/
+armadillo-14.2.2/
+build/
+googletest/
+sentencepiece/
