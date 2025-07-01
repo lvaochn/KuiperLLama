@@ -8,7 +8,7 @@ void* CUDADeviceAllocator::allocate(size_t byte_size) const {
   int id = -1;
   cudaError_t state = cudaGetDevice(&id);
   CHECK(state == cudaSuccess);
-  if (byte_size > 1024 * 1024) {
+  if (byte_size > 1024 * 1024) {  //申请字节大于1MB, 在big_buffer里找
     auto& big_buffers = big_buffers_map_[id];
     int sel_id = -1;
     for (int i = 0; i < big_buffers.size(); i++) {
@@ -24,6 +24,7 @@ void* CUDADeviceAllocator::allocate(size_t byte_size) const {
       return big_buffers[sel_id].data;
     }
 
+    //如果没找到空闲的，再去调用cudaMalloc
     void* ptr = nullptr;
     state = cudaMalloc(&ptr, byte_size);
     if (cudaSuccess != state) {

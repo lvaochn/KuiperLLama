@@ -29,6 +29,6 @@ void rmsnorm_kernel_cpu(const tensor::Tensor& input, const tensor::Tensor& weigh
 
   const float mean = arma::as_scalar(arma::mean(arma::pow(in_tensor, 2))) + eps;
   const float rsqrt = 1.f / std::sqrt(mean);
-  out_tensor = wei_tensor % (rsqrt * in_tensor);
+  out_tensor = wei_tensor % (rsqrt * in_tensor);  // %是逐元素相乘
 }
 }  // namespace kernel

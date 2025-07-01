@@ -3,3 +3,8 @@ armadillo-14.2.2/
 build/
 googletest/
 sentencepiece/
+core.43360
+core.43476
+llama2/
+llama_report.ncu-rep
+tinyllama/

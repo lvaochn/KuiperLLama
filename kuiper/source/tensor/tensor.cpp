@@ -101,6 +101,9 @@ Tensor::Tensor(base::DataType data_type, std::vector<int32_t> dims, bool need_al
   }
 }
 
+//1.申请一块大小一致的显存块
+//2.用CuMemcpy方法完成主存到显存的拷贝
+//3.和weight完成绑定，weight是一个tensor, tensor当中有一个buffer
 void Tensor::to_cuda(cudaStream_t stream) {
   CHECK_NE(buffer_, nullptr);
   const base::DeviceType device_type = this->device_type();

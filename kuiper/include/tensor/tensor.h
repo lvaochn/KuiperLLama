@@ -33,7 +33,8 @@ class Tensor {
   void to_cpu();
 
   void to_cuda(cudaStream_t stream = nullptr);
-
+  
+  //const在函数名后面表示该成员函数不能修改成员变量，除非成员变量被mutable修饰符修饰，下面都同理
   bool is_empty() const;
 
   void init_buffer(std::shared_ptr<base::DeviceAllocator> alloc, base::DataType data_type,
